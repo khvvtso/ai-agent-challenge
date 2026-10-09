@@ -7,7 +7,8 @@ for data quality. Every decision is reproducible, unit-tested and logged with th
 
 | | |
 |---|---|
-| **Live demo** | _<Streamlit Cloud URL>_ |
+| **Live demo** | https://khutso-inference.streamlit.app |
+| **Code** | https://github.com/khvvtso/ai-agent-challenge |
 | **Stack** | Python 3.12, Streamlit, Gemini via a provider-agnostic layer (Groq fallback), fastembed `bge-small-en-v1.5`, BM25, pandas, Pydantic, phonenumbers, rapidfuzz, Langfuse |
 | **Integrations** | Google Calendar API, Gmail API (read + send), UK Companies House API, Tavily / DuckDuckGo web search |
 | **Data** | All synthetic. The client "Halden Living" and all attendees are fictional. |
