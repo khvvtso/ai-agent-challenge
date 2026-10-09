@@ -17,3 +17,4 @@ google-auth
 google-auth-oauthlib
 python-dotenv
 pytest
+pysocks  # lets httplib2 (Google API client) work behind HTTP proxies

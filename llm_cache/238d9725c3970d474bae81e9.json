@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"thought": "The final state is reached and sending summary is skipped, so I can now call finish.", "tool": "finish", "args": {}}}

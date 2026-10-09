@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"thought": "Run the finalize tool since verification is complete and we are skipping sending the summary.", "tool": "finalize", "args": {}}}

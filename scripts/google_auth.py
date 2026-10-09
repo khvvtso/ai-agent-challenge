@@ -19,7 +19,7 @@ SCOPES = [
 
 creds_file = Path(__file__).resolve().parent.parent / "credentials.json"
 flow = InstalledAppFlow.from_client_secrets_file(str(creds_file), SCOPES)
-creds = flow.run_local_server(port=0, access_type="offline", prompt="consent")
+creds = flow.run_local_server(port=8765, access_type="offline", prompt="consent", open_browser=True, timeout_seconds=600)
 client = json.loads(creds_file.read_text())
 client = client.get("installed") or client.get("web")
 values = {"GOOGLE_CLIENT_ID": client["client_id"], "GOOGLE_CLIENT_SECRET": client["client_secret"],

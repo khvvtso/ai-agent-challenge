@@ -27,7 +27,7 @@ from core.trace import Trace
 from decisions import engine
 
 EVENT_QUERY = "AI in Production Roundtable"
-EMAIL_QUERY = "roundtable OR RSVP OR registration OR invitation newer_than:90d"
+EMAIL_QUERY = "roundtable OR RSVP OR registration OR invitation OR invite newer_than:90d"
 REQUIRED = ["name", "email", "company", "job_title", "phone"]
 FIELDS = ["name", "email", "company", "job_title", "phone", "rsvp_status", "plus_one", "dietary"]
 NICKNAMES = {"jon": "jonathan", "jonny": "jonathan", "dan": "daniel", "danny": "daniel", "mike": "michael",
@@ -502,9 +502,17 @@ class Agent:
         return f"event '{ev['summary']}' with {len(ev['attendees'])} invitees (backend={ev['backend']})"
 
     def t_search_emails(self, query: str = EMAIL_QUERY):
-        summaries = tools.gmail_search(query, mock=self.mock, trace=self.trace)
-        self.state["messages"] = {m["id"]: tools.gmail_read(m["id"], mock=self.mock) for m in summaries}
-        return f"{len(summaries)} emails fetched"
+        """Recall-first: the planner's query is unioned with the broad default query, because a
+        too-narrow LLM-chosen query silently drops RSVPs. Precision comes later from the classifier."""
+        queries = [query] if query == EMAIL_QUERY else [query, EMAIL_QUERY]
+        summaries = {}
+        counts = []
+        for q in queries:
+            found = tools.gmail_search(q, mock=self.mock, trace=self.trace)
+            counts.append(f"'{q}': {len(found)}")
+            summaries.update({m["id"]: m for m in found})
+        self.state["messages"] = {mid: tools.gmail_read(mid, mock=self.mock) for mid in summaries}
+        return f"{len(summaries)} emails fetched (union of {'; '.join(counts)})"
 
     def t_extract(self):
         msgs = list(self.state["messages"].values())

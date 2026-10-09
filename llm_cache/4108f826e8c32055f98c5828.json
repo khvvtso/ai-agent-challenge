@@ -1,0 +1,1 @@
+{"model": "gemini-3.1-flash-lite", "out": {"thought": "The data has been verified and is ready to be finalized into the output table.", "tool": "finalize", "args": {}}}

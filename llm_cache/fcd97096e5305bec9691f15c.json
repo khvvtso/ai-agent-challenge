@@ -1,1 +1,1 @@
-{"model": "openai/gpt-oss-120b", "out": {"thought": "Fetch the calendar event and its invitee list", "tool": "get_event", "args": {"query": "AI in Production Roundtable"}}}
+{"model": "gemini-3.5-flash-lite", "out": {"thought": "Fetch the calendar event to get the initial list of invitees.", "tool": "get_event", "args": {"query": "AI in Production Roundtable"}}}
