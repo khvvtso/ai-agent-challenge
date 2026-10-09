@@ -48,9 +48,10 @@ Return JSON only:
  "target_docs": ["subset of: use_cases, data_sources, controls, models"],
  "entities": ["named use cases, systems, IDs mentioned"],
  "aggregate": null or {{"table": "<table>", "filters": [{{"column": "...", "op": "eq|ne|gt|gte|lt|lte|in|contains", "value": ...}}],
-                        "sort_by": "<column or null>", "ascending": false, "limit": 10, "columns": ["columns to show"]}},
+                        "sort_by": "<column or null>", "ascending": false, "limit": 10, "columns": ["columns to show"],
+                        "metrics": [{{"column": "<numeric column>", "fn": "sum|mean|min|max|count"}}]}},
  "clarifying_question": null or "<question to ask if the request is ambiguous>"}}
-Rules: 'aggregate' for ranking/filtering/counting/totals across rows (use expected_value_gbp for "priority"/"value" rankings).
+Rules: 'aggregate' for ranking/filtering/counting/totals across rows; put any total/average/count in "metrics" (computed by pandas over ALL filtered rows) (use expected_value_gbp for "priority"/"value" rankings).
 'multi_hop' when the answer needs joining a use case to its data source, controls or permitted models (e.g. "what do I need to deploy X", "which model can X use").
 'out_of_scope' when the KB cannot contain the answer. 'clarify' only if genuinely ambiguous."""
 
@@ -91,6 +92,14 @@ def run_aggregate(index: Index, spec: dict) -> tuple[pd.DataFrame, str]:
             m = s.astype(str).str.lower() == str(val).lower() if op == "eq" else s.astype(str).str.lower() != str(val).lower()
         df = df[m]
         desc.append(f"{col} {op} {val}")
+    metrics = {}
+    for m in spec.get("metrics") or []:
+        col, fn = m.get("column"), m.get("fn")
+        if fn == "count":
+            metrics[f"count_rows"] = int(len(df))
+        elif col in df.columns and fn in ("sum", "mean", "min", "max") and pd.api.types.is_numeric_dtype(df[col]):
+            v = getattr(df[col], fn)()
+            metrics[f"{fn}_{col}"] = round(float(v), 2) if fn == "mean" else int(v) if float(v).is_integer() else float(v)
     if spec.get("sort_by") in df.columns:
         df = df.sort_values(spec["sort_by"], ascending=bool(spec.get("ascending")))
         desc.append(f"sorted by {spec['sort_by']} {'asc' if spec.get('ascending') else 'desc'}")
@@ -98,7 +107,7 @@ def run_aggregate(index: Index, spec: dict) -> tuple[pd.DataFrame, str]:
     key = DOCS[spec["table"]]["key"]
     cols = [c for c in (spec.get("columns") or []) if c in df.columns]
     cols = [key] + [c for c in cols if c != key] if cols else list(df.columns)
-    return df[cols], "; ".join(desc) or "no filters"
+    return df[cols], "; ".join(desc) or "no filters", metrics
 
 
 def retrieve_context(index: Index, plan: dict, trace: Trace) -> tuple[list[dict], dict]:
@@ -124,15 +133,16 @@ def retrieve_context(index: Index, plan: dict, trace: Trace) -> tuple[list[dict]
     if plan.get("intent") == "aggregate" and plan.get("aggregate"):
         with trace.span("structured_query", "tool", input=plan["aggregate"]) as s:
             try:
-                df, desc = run_aggregate(index, plan["aggregate"])
+                df, desc, metrics = run_aggregate(index, plan["aggregate"])
                 extras["table"] = df
                 extras["table_desc"] = desc
+                extras["metrics"] = metrics
                 key = DOCS[plan["aggregate"]["table"]]["key"]
                 for k in df[key]:
                     c = index.by_id(f"{plan['aggregate']['table']}:{k}")
                     if c:
                         add(c, 80.0, "structured-query")
-                s.update({"rows": len(df), "query": desc})
+                s.update({"rows": len(df), "query": desc, "metrics": metrics})
             except Exception as e:
                 s.update({"error": str(e)})
 
@@ -156,7 +166,7 @@ def retrieve_context(index: Index, plan: dict, trace: Trace) -> tuple[list[dict]
 
 ANSWER_SYSTEM = """You are the AI Opportunity Copilot. Answer ONLY using the CONTEXT records.
 - Cite record ids in square brackets after each fact, e.g. [use_cases:UC-01].
-- Copy numbers exactly as they appear in context (you may format with £ and thousands separators).
+- Copy numbers exactly as they appear in context (you may format with £ and thousands separators). Never do arithmetic yourself: use COMPUTED METRICS.
 - If a GOVERNANCE DECISION is provided, treat it as authoritative policy and explain it.
 - If the context does not contain the answer, say so and set not_in_kb true. Never guess.
 Return JSON: {"answer": "<markdown answer, concise, use bullet points or a short table where helpful>",
@@ -167,6 +177,8 @@ def generate(question: str, context: list[dict], extras: dict, trace: Trace) -> 
     ctx = "\n".join(f"[{h['id']}] {h['text']}" for h in context)
     if extras.get("table") is not None:
         ctx += f"\n\nSTRUCTURED QUERY RESULT ({extras['table_desc']}):\n{extras['table'].to_csv(index=False)}"
+        if extras.get("metrics"):
+            ctx += f"\nCOMPUTED METRICS (exact, use these instead of doing arithmetic): {json.dumps(extras['metrics'])}"
     for g in extras.get("decisions", []):
         ctx += f"\n\nGOVERNANCE DECISION (decision table '{g['table']}' v{g['version']}, rule {g['rule']}): {json.dumps({k: v for k, v in g.items() if k not in ('table', 'version')})}"
     if not llm.available():
@@ -192,7 +204,7 @@ def verify(answer: dict, context: list[dict], extras: dict, trace: Trace) -> dic
         ctx_text = " ".join(h["text"] for h in context)
         if extras.get("table") is not None:
             ctx_text += " " + extras["table"].to_csv(index=False)
-        ctx_text += " " + json.dumps(extras.get("decisions", []))
+        ctx_text += " " + json.dumps(extras.get("decisions", [])) + " " + json.dumps(extras.get("metrics", {}))
         ctx_nums = {_norm_num(n) for n in NUM_RE.findall(ctx_text)}
         ans_text = re.sub(r"\[[^\]]+\]", "", answer.get("answer", ""))
         ans_nums = [_norm_num(n) for n in NUM_RE.findall(ans_text)]

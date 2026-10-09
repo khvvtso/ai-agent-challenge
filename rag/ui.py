@@ -41,6 +41,8 @@ def _render_answer(r: dict):
     if r["extras"].get("table") is not None:
         st.caption(f"Structured query executed by pandas: {r['extras']['table_desc']}")
         st.dataframe(r["extras"]["table"], hide_index=True, width="stretch")
+        if r["extras"].get("metrics"):
+            st.caption("Computed metrics (pandas): " + " · ".join(f"`{k}` = {v:,}" for k, v in r["extras"]["metrics"].items()))
     cols = st.columns(4)
     cols[0].metric("Intent", plan.get("intent", "-"))
     cols[1].metric("Confidence", res.get("confidence", "-"))

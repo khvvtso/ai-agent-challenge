@@ -528,6 +528,7 @@ class Agent:
                                 self.audit.append({"record": e.email or e.name, "field": "rsvp_status", "before": e.rsvp_status,
                                                    "after": st["choice"], "rule": "judge_override", "source": m["id"]})
                                 e.rsvp_status = st["choice"]
+                    extracted = self._coverage_check(msgs, extracted, ignored)
                 except llm.LLMUnavailable as err:
                     s.update(fallback_reason=str(err)[:300])
                     extracted = None
@@ -539,6 +540,34 @@ class Agent:
             self.state["extracted"], self.state["ignored"] = extracted, ignored
             s.update({"extractor": self.state["extractor"], "records": len(extracted), "ignored": ignored})
         return f"{len(extracted)} attendee mentions extracted ({self.state['extractor']}), {len(ignored)} emails ignored"
+
+    def _coverage_check(self, msgs, extracted, ignored):
+        """Self-verification: every email must yield an attendee or an explicit ignore reason.
+        Uncovered emails are re-extracted once, then handled by the rule-based extractor."""
+        def uncovered():
+            done = {e.source_email_id for e in extracted} | {i.get("email_id") for i in ignored}
+            return [m for m in msgs if m["id"] not in done]
+
+        with self.trace.span("extract.coverage_check", "evaluator") as s:
+            first = [m["id"] for m in uncovered()]
+            if first:
+                try:
+                    more, more_ignored = extract_llm(uncovered(), self.trace)
+                    extracted += more
+                    ignored += more_ignored
+                except llm.LLMUnavailable:
+                    pass
+            rest = uncovered()
+            if rest:
+                more, more_ignored = extract_heuristic(rest)
+                extracted += more
+                ignored += more_ignored
+            for mid in first:
+                how = "heuristic" if mid in {m["id"] for m in rest} else "llm-retry"
+                self.audit.append({"record": mid, "field": "*", "before": "not extracted", "after": f"re-extracted ({how})",
+                                   "rule": "coverage_check", "source": mid})
+            s.update({"uncovered_first_pass": first, "fell_back_to_heuristic": [m["id"] for m in rest]})
+        return extracted
 
     def t_normalize_dedupe(self):
         with self.trace.span("normalize_dedupe", "chain", input={"extracted": len(self.state["extracted"])}) as s:

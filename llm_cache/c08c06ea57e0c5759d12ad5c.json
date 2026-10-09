@@ -1,0 +1,1 @@
+{"model": "openai/gpt-oss-120b", "out": {"thought": "Extract attendee data from the fetched RSVP emails", "tool": "extract", "args": {"emails": "<use previously fetched emails>"}}}

@@ -1,0 +1,1 @@
+{"model": "openai/gpt-oss-20b", "out": {"thought": "All steps completed, no summary to send, finishing.", "tool": "finish", "args": {}}}

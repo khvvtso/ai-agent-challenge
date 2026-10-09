@@ -1,0 +1,1 @@
+{"model": "openai/gpt-oss-20b", "out": {"thought": "Finalize the attendee list", "tool": "finalize", "args": {"records": "verified_records"}}}

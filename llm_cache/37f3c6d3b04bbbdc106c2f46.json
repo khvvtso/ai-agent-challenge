@@ -1,0 +1,1 @@
+{"model": "openai/gpt-oss-120b", "out": {"support": {"probabilities": {"supported": 0.97, "partially_supported": 0.02, "unsupported": 0.01}, "evidence": "contains_pii: yes for UC-08, UC-14, UC-18, UC-22 and annual_benefit_gbp values sum to \u00a3830,000"}}}

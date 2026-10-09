@@ -1,0 +1,1 @@
+{"model": "openai/gpt-oss-20b", "out": {"thought": "Proceed to cleanse and dedupe the attendee list combining calendar invitees and extracted email data.", "tool": "normalize_dedupe", "args": {"extract": "<use previously extracted attendee data>", "event": "<use previously fetched event data>"}}}

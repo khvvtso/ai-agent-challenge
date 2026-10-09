@@ -45,7 +45,8 @@ def models_for(provider: str) -> list[str]:
     if provider == "gemini":
         default = "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.6-flash,gemini-3.5-flash,gemini-flash-latest"
         return [m.strip() for m in config.get("GEMINI_MODELS", default).split(",") if m.strip()]
-    return [config.get("GROQ_MODEL", "llama-3.3-70b-versatile")]
+    default = "openai/gpt-oss-120b,qwen/qwen3.8-27b,openai/gpt-oss-20b"
+    return [m.strip() for m in config.get("GROQ_MODELS", default).split(",") if m.strip()]
 
 
 def _call_gemini(system: str, prompt: str, json_mode: bool, temperature: float, model: str):
@@ -76,6 +77,9 @@ def _call_groq(system: str, prompt: str, json_mode: bool, temperature: float, mo
         "temperature": temperature,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
     }
+    body["max_completion_tokens"] = 8192
+    if model.startswith("openai/gpt-oss"):
+        body["reasoning_effort"] = "low"  # hidden reasoning otherwise eats the output budget
     if json_mode:
         body["response_format"] = {"type": "json_object"}
     r = requests.post(
@@ -129,7 +133,8 @@ def _complete(system, prompt, trace: Trace | None, name: str, json_mode: bool, t
     if not provs:
         raise LLMUnavailable("No LLM key configured (set GEMINI_API_KEY or GROQ_API_KEY).")
     cache = _cache_key(system, prompt, json_mode, temperature)
-    if cache.exists():
+    use_cache = (config.get("LLM_CACHE", "on") or "on").lower() != "off"
+    if use_cache and cache.exists():
         hit = json.loads(cache.read_text())
         if trace:
             with trace.span(name, "generation", input={"system": system[:2000], "prompt": prompt[:6000]},

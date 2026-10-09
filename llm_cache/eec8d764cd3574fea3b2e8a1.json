@@ -1,0 +1,1 @@
+{"model": "openai/gpt-oss-120b", "out": {"support": {"probabilities": {"supported": 0.97, "partially_supported": 0.02, "unsupported": 0.01}, "evidence": "Each document lists the same four leasing use cases with contains_pii: yes and annual_benefit_gbp values (300000,280000,160000,90000) summing to \u00a3830,000."}}}
