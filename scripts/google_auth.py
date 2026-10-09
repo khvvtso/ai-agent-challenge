@@ -2,9 +2,11 @@
 
 Usage: download an OAuth *Desktop app* client as credentials.json, then
     .venv/bin/python scripts/google_auth.py
-Paste the printed values into .env (local) or Streamlit secrets (deployed).
+The client id/secret and refresh token are written straight into .env (never printed);
+copy them from .env into Streamlit secrets for the deployed app.
 """
 import json
+import re
 from pathlib import Path
 
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -20,6 +22,12 @@ flow = InstalledAppFlow.from_client_secrets_file(str(creds_file), SCOPES)
 creds = flow.run_local_server(port=0, access_type="offline", prompt="consent")
 client = json.loads(creds_file.read_text())
 client = client.get("installed") or client.get("web")
-print(f'\nGOOGLE_CLIENT_ID="{client["client_id"]}"')
-print(f'GOOGLE_CLIENT_SECRET="{client["client_secret"]}"')
-print(f'GOOGLE_REFRESH_TOKEN="{creds.refresh_token}"')
+values = {"GOOGLE_CLIENT_ID": client["client_id"], "GOOGLE_CLIENT_SECRET": client["client_secret"],
+          "GOOGLE_REFRESH_TOKEN": creds.refresh_token}
+env = creds_file.parent / ".env"
+text = env.read_text() if env.exists() else ""
+for k, v in values.items():
+    line = f"{k}={v}"
+    text = re.sub(rf"^{k}=.*$", lambda _: line, text, flags=re.M) if re.search(rf"^{k}=", text, re.M) else text + f"\n{line}"
+env.write_text(text)
+print(f"Saved {', '.join(values)} to {env} (values not shown).")

@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"support": {"probabilities": {"supported": 1.0, "partially_supported": 0.0, "unsupported": 0.0}, "evidence": "To deploy **Maintenance request triage** (UC-01), which is classified as Medium risk and contains personal data (PII)"}}}
