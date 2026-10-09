@@ -1,0 +1,36 @@
+# Attendee record status - DMN-style decision table, hit policy FIRST.
+# Inputs are produced by deterministic checks + verification tools; the LLM never sets status.
+version: 1.0.0
+inputs: [rsvp_status, email_valid, company_status, invited, is_plus_one, has_conflict, domain_match, missing_count, was_corrected]
+rules:
+  - id: R01_declined
+    when: {rsvp_status: declined}
+    then: {status: declined, reason: "Attendee declined the invitation"}
+  - id: R02_invalid_email
+    when: {email_valid: false}
+    then: {status: unverified, reason: "Email address fails syntax validation"}
+  - id: R03_company_not_found
+    when: {company_status: not_found}
+    then: {status: unverified, reason: "Company not found in the UK company register"}
+  - id: R04_company_inactive
+    when: {company_status: {in: [dissolved, liquidation, closed, inactive]}}
+    then: {status: unverified, reason: "Company is not active in the register"}
+  - id: R05_not_invited
+    when: {invited: false, is_plus_one: false}
+    then: {status: not_invited, reason: "RSVP from someone not on the invite list - needs organiser approval"}
+  - id: R06_conflict
+    when: {has_conflict: true}
+    then: {status: conflict, reason: "Sources disagree on one or more fields"}
+  - id: R07_domain_mismatch
+    when: {domain_match: false}
+    then: {status: unverified, reason: "Email domain does not match the company's domain"}
+  - id: R08_missing_fields
+    when: {missing_count: {gte: 1}}
+    then: {status: missing_fields, reason: "Required fields missing"}
+  - id: R09_corrected
+    when: {was_corrected: true, company_status: active}
+    then: {status: corrected, reason: "Verified after automatic corrections (see audit log)"}
+  - id: R10_verified
+    when: {company_status: active}
+    then: {status: verified, reason: "All checks passed"}
+default: {status: unverified, reason: "Insufficient evidence to verify"}

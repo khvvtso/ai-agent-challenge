@@ -1,0 +1,1 @@
+{"model": "gemini-3.1-flash-lite", "out": {"support": {"probabilities": {"supported": 1.0, "partially_supported": 0.0, "unsupported": 0.0}, "evidence": "annual_run_cost_gbp: 22000"}}}

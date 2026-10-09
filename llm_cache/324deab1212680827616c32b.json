@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"thought": "Run the finalize step to build the output table and satisfy the critic invariants.", "tool": "finalize", "args": {}}}

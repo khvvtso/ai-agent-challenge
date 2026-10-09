@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"answer": "The Finance use case blocked by poor data readiness (data readiness < 3.0) is:\n\n* **Rent arrears early warning (UC-02)**: Data readiness score of 2 [use_cases:UC-02].", "citations": ["use_cases:UC-02"], "confidence": "high", "not_in_kb": false}}

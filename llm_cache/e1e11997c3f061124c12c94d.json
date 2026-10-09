@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"standalone_question": "What is our Azure budget for next year?", "intent": "out_of_scope", "search_queries": [], "target_docs": [], "entities": [], "aggregate": null, "clarifying_question": null}}

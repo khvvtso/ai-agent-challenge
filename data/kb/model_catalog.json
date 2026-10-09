@@ -1,0 +1,14 @@
+{
+  "catalog": "Halden Living approved AI model catalog",
+  "note": "Fictional client data for demo purposes. Rates are illustrative internal blended rates, not vendor list prices.",
+  "last_reviewed": "2026-09-15",
+  "models": [
+    {"model_id": "M-01", "name": "Gemini Flash (Vertex AI)", "provider": "Google Cloud", "type": "general LLM", "input_gbp_per_1m_tokens": 0.25, "output_gbp_per_1m_tokens": 2.0, "context_window_tokens": 1000000, "hosting_regions": ["UK", "EU"], "approved_for_pii": true, "max_risk_tier": "Medium", "zero_data_retention": true},
+    {"model_id": "M-02", "name": "Claude Sonnet (AWS Bedrock)", "provider": "Anthropic via AWS", "type": "general LLM", "input_gbp_per_1m_tokens": 2.4, "output_gbp_per_1m_tokens": 12.0, "context_window_tokens": 1000000, "hosting_regions": ["UK", "EU"], "approved_for_pii": true, "max_risk_tier": "High", "zero_data_retention": true},
+    {"model_id": "M-03", "name": "Claude Haiku (AWS Bedrock)", "provider": "Anthropic via AWS", "type": "small LLM", "input_gbp_per_1m_tokens": 0.8, "output_gbp_per_1m_tokens": 4.0, "context_window_tokens": 200000, "hosting_regions": ["EU"], "approved_for_pii": true, "max_risk_tier": "Medium", "zero_data_retention": true},
+    {"model_id": "M-04", "name": "GPT (Azure OpenAI)", "provider": "Microsoft Azure", "type": "general LLM", "input_gbp_per_1m_tokens": 2.0, "output_gbp_per_1m_tokens": 8.0, "context_window_tokens": 400000, "hosting_regions": ["UK", "EU"], "approved_for_pii": true, "max_risk_tier": "High", "zero_data_retention": true},
+    {"model_id": "M-05", "name": "Llama (Groq Cloud)", "provider": "Groq", "type": "open-weights LLM", "input_gbp_per_1m_tokens": 0.5, "output_gbp_per_1m_tokens": 0.65, "context_window_tokens": 128000, "hosting_regions": ["US"], "approved_for_pii": false, "max_risk_tier": "Low", "zero_data_retention": false},
+    {"model_id": "M-06", "name": "Clef (self-hosted decision model)", "provider": "Cloudflare open weights, self-hosted", "type": "decision model", "input_gbp_per_1m_tokens": 0.1, "output_gbp_per_1m_tokens": 0.0, "context_window_tokens": 32000, "hosting_regions": ["UK"], "approved_for_pii": true, "max_risk_tier": "High", "zero_data_retention": true},
+    {"model_id": "M-07", "name": "bge-small embeddings (self-hosted)", "provider": "BAAI open weights, self-hosted", "type": "embedding", "input_gbp_per_1m_tokens": 0.01, "output_gbp_per_1m_tokens": 0.0, "context_window_tokens": 512, "hosting_regions": ["UK"], "approved_for_pii": true, "max_risk_tier": "High", "zero_data_retention": true}
+  ]
+}

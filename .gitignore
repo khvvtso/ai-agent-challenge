@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.env
+.streamlit/secrets.toml
+credentials.json
+token.json
+.cache/
+*.pyc
+data/mock/outbox.json

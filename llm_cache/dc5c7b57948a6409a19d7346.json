@@ -1,0 +1,1 @@
+{"model": "gemini-3.1-flash-lite", "out": {"answer": "The annual run cost for the Energy usage optimisation use case (UC-06) is \u00a322,000 [use_cases:UC-06].", "citations": ["use_cases:UC-06"], "confidence": "high", "not_in_kb": false}}

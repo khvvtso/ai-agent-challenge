@@ -1,0 +1,12 @@
+source_id,system,owner,description,quality_score,contains_pii,refresh_frequency,hosting_region
+DS-01,Resident CRM (Salesforce),Commercial Director,Resident profiles tenancy records and payment history,2,yes,real-time,EU
+DS-02,Helpdesk (ServiceNow),Head of Facilities,Maintenance tickets contractor assignments and SLAs,4,yes,real-time,UK
+DS-03,Resident messaging platform,Head of Resident Experience,Chat email and app messages from residents,3,yes,real-time,UK
+DS-04,Booking engine,Commercial Director,Room inventory bookings pricing and applicant leads,3,yes,hourly,UK
+DS-05,ERP finance ledger (Dynamics 365),Financial Controller,General ledger AP/AR invoices and budgets,5,no,daily,UK
+DS-06,Building management system,Head of Sustainability,IoT sensor data for energy HVAC and lifts,3,no,5-minute,UK
+DS-07,Contract repository (SharePoint),General Counsel,Supplier and university agreements,4,no,ad-hoc,UK
+DS-08,HR system (Workday),HR Director,Staff records contracts and absence,4,yes,daily,EU
+DS-09,Move-out inspection app,Head of Operations,Room inspection photos and checklists,2,yes,per-inspection,US
+DS-10,Planning portal exports,Development Director,Public planning applications and decisions,3,no,weekly,UK
+DS-11,HR policy library,HR Director,Employee handbook and HR policies,5,no,ad-hoc,UK

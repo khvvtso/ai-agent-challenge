@@ -1,0 +1,1 @@
+{"model": "gemini-3.1-flash-lite", "out": {"answer": "For High risk use cases, the following control is required before the pilot stage:\n\n* **AI Steering Committee approval**: Formal approval must be obtained from the AI Steering Committee [controls:GC-08].", "citations": ["controls:GC-08"], "confidence": "high", "not_in_kb": false}}

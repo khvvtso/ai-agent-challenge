@@ -1,0 +1,10 @@
+[
+  {"q": "Which Finance use cases are blocked by poor data readiness?", "expect_ids": ["use_cases:UC-02"], "expect_text": ["Rent arrears"], "intent": "aggregate"},
+  {"q": "What are the top 3 use cases by expected value?", "expect_ids": ["use_cases:UC-01", "use_cases:UC-03", "use_cases:UC-04"], "expect_text": ["Maintenance request triage"], "intent": "aggregate"},
+  {"q": "What do we need before deploying maintenance request triage, and which models can it use?", "expect_ids": ["use_cases:UC-01", "controls:GC-04", "models:M-01"], "expect_text": ["Data Protection Officer", "impact assessment"], "intent": "multi_hop"},
+  {"q": "Who owns the data source behind the rent arrears use case and how good is its quality?", "expect_ids": ["use_cases:UC-02", "data_sources:DS-01"], "expect_text": ["Commercial Director", "2"], "intent": "multi_hop"},
+  {"q": "Which approved models can process personal data and are hosted in the UK?", "expect_ids": ["models:M-01", "models:M-02", "models:M-04", "models:M-06"], "expect_text": ["Azure"], "intent": "aggregate"},
+  {"q": "Which controls are required for High risk use cases before pilot?", "expect_ids": ["controls:GC-08", "controls:GC-04", "controls:GC-01"], "expect_text": ["Steering Committee", "impact assessment"], "intent": "aggregate"},
+  {"q": "What is the annual run cost of the energy usage optimisation use case?", "expect_ids": ["use_cases:UC-06"], "expect_text": ["22,000"], "intent": "lookup"},
+  {"q": "What is our Azure budget for next year?", "expect_ids": [], "expect_text": [], "intent": "out_of_scope", "expect_not_in_kb": true}
+]

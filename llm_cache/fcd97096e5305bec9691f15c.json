@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"thought": "We need to fetch the calendar event first to get the initial list of invitees.", "tool": "get_event", "args": {"query": "AI in Production Roundtable"}}}

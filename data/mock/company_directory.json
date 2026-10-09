@@ -1,0 +1,12 @@
+{
+  "_note": "SAMPLE reference snapshot used only when COMPANIES_HOUSE_API_KEY is not set. Not authoritative: company numbers are deliberately left null; statuses/domains are illustrative. With a key, the agent queries the live Companies House API instead.",
+  "companies": [
+    {"name": "Serco Group plc", "aliases": ["Serco"], "status": "active", "number": null, "domain": "serco.com"},
+    {"name": "Watkin Jones plc", "aliases": ["Watkin Jones Group", "Watkin Jones"], "status": "active", "number": null, "domain": "watkinjones.com"},
+    {"name": "SSP Group plc", "aliases": ["SSP Group", "SSP"], "status": "active", "number": null, "domain": "sspgroup.com"},
+    {"name": "HSBC UK Bank plc", "aliases": ["HSBC UK", "HSBC"], "status": "active", "number": null, "domain": "hsbc.co.uk"},
+    {"name": "Virgin Media O2", "aliases": ["VMO2", "Virgin Media O2"], "status": "active", "number": null, "domain": "virginmediao2.co.uk"},
+    {"name": "Anthony Nolan", "aliases": ["Anthony Nolan Trust"], "status": "active", "number": null, "domain": "anthonynolan.org"},
+    {"name": "Brightwater Logistics Ltd", "aliases": ["Brightwater Logistics"], "status": "dissolved", "number": null, "domain": "brightwaterlogistics.co.uk", "fictional": true}
+  ]
+}

@@ -1,0 +1,16 @@
+# Deployment gate for a use case. Inputs come from the knowledge base (never the LLM).
+version: "1.0"
+rules:
+  - id: G1-high-risk
+    when: {risk_tier: High}
+    then: {approval_owner: AI Steering Committee, dpia_required: true, human_in_loop: true, allowed_residency: [UK, EU], min_model_tier: High}
+  - id: G2-medium-pii
+    when: {risk_tier: Medium, contains_pii: "yes"}
+    then: {approval_owner: Data Protection Officer, dpia_required: true, human_in_loop: true, allowed_residency: [UK, EU], min_model_tier: Medium}
+  - id: G3-medium-no-pii
+    when: {risk_tier: Medium, contains_pii: "no"}
+    then: {approval_owner: AI Product Owner, dpia_required: false, human_in_loop: true, allowed_residency: [UK, EU, US], min_model_tier: Medium}
+  - id: G4-low-pii
+    when: {risk_tier: Low, contains_pii: "yes"}
+    then: {approval_owner: Data Protection Officer, dpia_required: true, human_in_loop: false, allowed_residency: [UK, EU], min_model_tier: Low}
+default: {approval_owner: AI Product Owner, dpia_required: false, human_in_loop: false, allowed_residency: [UK, EU, US], min_model_tier: Low}

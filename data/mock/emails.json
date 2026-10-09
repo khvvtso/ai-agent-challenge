@@ -1,0 +1,101 @@
+{
+  "_note": "Sample demo inbox. All people are fictional; phone numbers use Ofcom drama ranges.",
+  "emails": [
+    {
+      "id": "m01",
+      "sender": "Priya Shah <priya.shah@serco.com>",
+      "subject": "Re: AI in Production Roundtable — 12 Nov",
+      "date": "2026-10-01T09:12:00+01:00",
+      "body": "Hi team,\n\nThanks for the invite - I'll definitely be there on the 12th.\n\nBest,\n--\nPriya Shah\nHead of Data Science\nSerco\nTel: 020 7946 0123",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m02",
+      "sender": "Jon Reed <jonathan.reed@watkinjones.com>",
+      "subject": "Roundtable RSVP",
+      "date": "2026-10-02T14:03:00+01:00",
+      "body": "Count me in for the roundtable!\n\nCheers, Jon\n--\nJon Reed | AI Product Lead | Watkin Jones Group | 0161 496 0456",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m03",
+      "sender": "Jonathan Reed <Jonathan.Reed@WatkinJones.com>",
+      "subject": "Re: Roundtable RSVP - plus one",
+      "date": "2026-10-06T08:45:00+01:00",
+      "body": "Quick follow-up: I'd like to bring my colleague Hannah Price (hannah.price@watkinjones.com) as a plus-one if there's space.\n\nAlso note my new title below.\n\n--\nJonathan Reed | Director of AI & Automation | Watkin Jones Group | 0161 496 0456",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m04",
+      "sender": "Event Registrations <noreply@forms.demo-roundtable.example>",
+      "subject": "Fwd: New registration - AI in Production Roundtable",
+      "date": "2026-10-03T11:20:00+01:00",
+      "body": "---------- Forwarded message ----------\nNew registration received:\n\nName: michael okafor\nEmail: M.Okafor@SSPGroup.com\nCompany: SSP Group plc\nJob title: Head of Analytics\nPhone:\nDietary: Vegetarian\nAttending: Yes",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m05",
+      "sender": "Emma Larson <emma.larsen@hsbc.co.uk>",
+      "subject": "RE: Invitation: AI in Production Roundtable",
+      "date": "2026-10-03T16:55:00+01:00",
+      "body": "Hello,\n\nYes, I'll attend - looking forward to it.\n\nKind regards,\n--\nEmma Larson | VP, Data Platforms | HSBC UK | 020 7946 0321",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m06",
+      "sender": "Dan Whitfield <dan.whitfield@virginmediao2.co.uk>",
+      "subject": "Roundtable - attending",
+      "date": "2026-10-04T10:02:00+01:00",
+      "body": "Hi, I'm in. Do you have the agenda yet?\n\n--\nDan Whitfield\nLead ML Engineer\nVirgin Media O2\nMobile: +44 7700 900789",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m07",
+      "sender": "Sofia Marquez <sofia.marquez@anthonynolan.org>",
+      "subject": "Re: AI in Production Roundtable",
+      "date": "2026-10-05T13:30:00+01:00",
+      "body": "Delighted to join, thank you! Please note I'm gluten-free.\n\nDietary: Gluten-free\n\n--\nSofia Marquez\nData & Insight Manager\nAnthony Nolan",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m08",
+      "sender": "Tom Hughes <tom.hughes@brightwaterlogistics.co.uk>",
+      "subject": "RSVP: Roundtable 12 Nov",
+      "date": "2026-10-05T17:41:00+01:00",
+      "body": "Happy to confirm my attendance.\n\n--\nTom Hughes | Operations Director | Brightwater Logistics Ltd | 0113 496 0789",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m09",
+      "sender": "Aisha Bello <aisha.bello@nimbusanalytica.io>",
+      "subject": "Re: Invite - AI in Production",
+      "date": "2026-10-06T09:15:00+01:00",
+      "body": "Yes please, I'd love to attend.\n\n--\nAisha Bello | Founder & CEO | Nimbus Analytica Ltd | 020 7946 0555",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m10",
+      "sender": "Liam O'Connor <liam.oconnor@serco.com>",
+      "subject": "Re: AI in Production Roundtable — 12 Nov",
+      "date": "2026-10-06T12:00:00+01:00",
+      "body": "Unfortunately I have a clash that evening and won't be able to attend. Please keep me in mind for the next one.\n\n--\nLiam O'Connor\nChief Data Officer\nSerco",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m11",
+      "sender": "AI Weekly Digest <newsletter@aiweekly-digest.example>",
+      "subject": "This week in AI: 5 roundtables you can't miss (RSVP now!)",
+      "date": "2026-10-07T07:00:00+01:00",
+      "body": "Top stories this week: agents in production, eval tooling, and 5 roundtables worth an RSVP.\n\nClick here to RSVP for our webinar. Contact: Sam Taylor, Editor, +44 20 7946 0999\n\nUnsubscribe | Manage preferences",
+      "to": "events@demo-roundtable.example"
+    },
+    {
+      "id": "m12",
+      "sender": "Ravi Patel <ravi.patel@sspgroup.com>",
+      "subject": "Can I join the roundtable?",
+      "date": "2026-10-08T15:22:00+01:00",
+      "body": "Hi, Michael mentioned the roundtable - is there room for me to join? I'd be keen to attend.\n\n--\nRavi Patel | Data Engineer | SSP Group | +44 (0)20 7946 0654",
+      "to": "events@demo-roundtable.example"
+    }
+  ]
+}

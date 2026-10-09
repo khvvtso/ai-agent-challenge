@@ -1,0 +1,23 @@
+use_case_id,name,department,description,annual_benefit_gbp,build_cost_gbp,annual_run_cost_gbp,feasibility,data_readiness,risk_tier,contains_pii,primary_data_source,status,owner
+UC-01,Maintenance request triage,Maintenance,Classify and prioritise resident maintenance tickets and route to the right contractor,410000,85000,18000,5,4,Medium,yes,DS-02,Pilot,Head of Facilities
+UC-02,Rent arrears early warning,Finance,Predict residents likely to fall into arrears 60 days ahead and trigger support outreach,620000,140000,26000,3,2,High,yes,DS-01,Assessed,Finance Director
+UC-03,Invoice coding automation,Finance,Extract and code supplier invoices to the general ledger,180000,45000,9000,5,5,Low,no,DS-05,Production,Financial Controller
+UC-04,Resident enquiry assistant,Customer Experience,24/7 chat assistant answering resident FAQs about tenancy and building services,350000,70000,32000,4,4,Medium,yes,DS-03,Pilot,Head of Resident Experience
+UC-05,Dynamic room pricing,Leasing,Recommend room prices per building and week based on demand signals,900000,220000,40000,3,3,High,no,DS-04,Assessed,Commercial Director
+UC-06,Energy usage optimisation,Operations,Forecast building energy demand and optimise HVAC schedules,540000,160000,22000,4,3,Low,no,DS-06,Pilot,Head of Sustainability
+UC-07,Contract clause review,Legal,Flag non-standard clauses in supplier and university nomination agreements,120000,60000,11000,4,4,Medium,no,DS-07,Idea,General Counsel
+UC-08,Booking fraud detection,Leasing,Detect fraudulent bookings and identity documents during application,300000,120000,24000,3,2,High,yes,DS-01,Idea,Commercial Director
+UC-09,Staff rota optimisation,HR,Generate site staff rotas balancing cover rules and preferences,95000,40000,6000,4,3,Low,yes,DS-08,Assessed,HR Director
+UC-10,Wellbeing concern detection,Customer Experience,Detect wellbeing risk signals in resident messages and escalate to welfare team,210000,90000,15000,2,2,High,yes,DS-03,Paused,Head of Resident Experience
+UC-11,Cash flow forecasting,Finance,Weekly 13-week cash forecast from bookings receivables and payables,260000,75000,10000,4,4,Low,no,DS-05,Pilot,Finance Director
+UC-12,Supplier spend analytics,Finance,Categorise spend and surface consolidation opportunities,150000,35000,5000,5,4,Low,no,DS-05,Assessed,Financial Controller
+UC-13,Damage deposit assessment,Operations,Assess move-out photos to estimate damage charges consistently,190000,110000,14000,3,2,Medium,yes,DS-09,Idea,Head of Operations
+UC-14,Lead scoring for direct lets,Leasing,Score inbound applicant leads by conversion likelihood,280000,50000,8000,4,4,Medium,yes,DS-04,Pilot,Commercial Director
+UC-15,Planning application research,Development,Summarise planning precedents and constraints for new sites,140000,55000,7000,4,3,Low,no,DS-10,Idea,Development Director
+UC-16,Board pack summarisation,Finance,Draft first-pass board pack commentary from management accounts,70000,25000,4000,5,5,Low,no,DS-05,Assessed,CFO
+UC-17,Predictive maintenance for lifts,Maintenance,Predict lift failures from sensor and service history,330000,150000,20000,3,3,Medium,no,DS-06,Assessed,Head of Facilities
+UC-18,University nominations reconciliation,Leasing,Reconcile university nomination lists against bookings,160000,30000,5000,5,4,Medium,yes,DS-04,Pilot,Commercial Director
+UC-19,Complaint root-cause analysis,Customer Experience,Cluster complaints and identify root causes by building,170000,40000,6000,4,4,Medium,yes,DS-03,Assessed,Head of Resident Experience
+UC-20,HR policy assistant,HR,Answer employee questions about HR policies with citations,60000,20000,5000,5,5,Low,no,DS-11,Production,HR Director
+UC-21,Contractor performance scoring,Maintenance,Score contractors on SLA adherence and rework,120000,30000,4000,4,3,Low,no,DS-02,Idea,Head of Facilities
+UC-22,Accessibility needs matching,Leasing,Match applicants with declared accessibility needs to suitable rooms,90000,45000,6000,3,2,High,yes,DS-01,Idea,Head of Resident Experience

@@ -1,0 +1,26 @@
+{
+  "_note": "Sample data for the demo. All people are fictional; phone numbers use Ofcom's reserved drama ranges.",
+  "events": [
+    {
+      "id": "evt_roundtable_2026_11",
+      "summary": "AI in Production Roundtable — Under The Inference Live",
+      "location": "Battersea, London",
+      "start": "2026-11-12T17:30:00+00:00",
+      "end": "2026-11-12T20:00:00+00:00",
+      "organizer": "events@demo-roundtable.example",
+      "description": "Invite-only roundtable on moving AI from pilot to production.",
+      "attendees": [
+        {"email": "priya.shah@serco.com", "displayName": "Priya Shah", "responseStatus": "accepted"},
+        {"email": "JONATHAN.REED@WATKINJONES.COM", "displayName": "jonathan reed", "responseStatus": "needsAction"},
+        {"email": "m.okafor@sspgroup.com", "displayName": "Michael Okafor", "responseStatus": "needsAction"},
+        {"email": "emma.larsen@hsbc.co.uk", "displayName": "Emma Larsen", "responseStatus": "accepted"},
+        {"email": "dan.whitfield@virginmediao2.co.uk", "displayName": "Dan Whitfield", "responseStatus": "needsAction"},
+        {"email": "sofia.marquez@anthonynolan.org", "displayName": "Sofia Marquez", "responseStatus": "needsAction"},
+        {"email": "tom.hughes@brightwaterlogistics.co.uk", "displayName": "Tom Hughes", "responseStatus": "needsAction"},
+        {"email": "aisha.bello@nimbusanalytica.io", "displayName": "Aisha Bello", "responseStatus": "needsAction"},
+        {"email": "liam.oconnor@serco.com", "displayName": "liam o'connor", "responseStatus": "declined"},
+        {"email": "Grace.Chen@hsbc.co.uk", "displayName": "Grace Chen", "responseStatus": "needsAction"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"support": {"probabilities": {"supported": 1.0, "partially_supported": 0.0, "unsupported": 0.0}, "evidence": "Document: AI governance controls | control_id: GC-01 | risk_tier: Low | control: Use-case registration"}}}

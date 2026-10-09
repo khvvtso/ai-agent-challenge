@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"support": {"probabilities": {"supported": 1.0, "partially_supported": 0.0, "unsupported": 0.0}, "evidence": "use_case_id: UC-02 | name: Rent arrears early warning | department: Finance | data_readiness: 2"}}}

@@ -1,0 +1,13 @@
+control_id,risk_tier,control,description,owner,framework_reference,required_before
+GC-01,Low,Use-case registration,Register the use case in the AI register with owner and purpose,AI Product Owner,ISO/IEC 42001 6.1,Pilot
+GC-02,Low,Approved model only,Use a model from the approved model catalog,AI Product Owner,Internal AI Policy 3.2,Pilot
+GC-03,Low,Output logging,Log prompts outputs and model version for 90 days,Platform Team,ISO/IEC 42001 9.1,Production
+GC-04,Medium,Data protection impact assessment,Complete a DPIA where personal data is processed,Data Protection Officer,UK GDPR Art. 35,Pilot
+GC-05,Medium,Human review of outputs,A human reviews outputs before they affect a resident or supplier,Business Owner,EU AI Act Art. 14,Production
+GC-06,Medium,Evaluation baseline,Offline evaluation against a labelled test set with agreed acceptance threshold,AI Product Owner,ISO/IEC 42001 9.1,Production
+GC-07,Medium,UK/EU data residency,Personal data must be processed in UK or EU regions only,Data Protection Officer,UK GDPR Ch. 5,Pilot
+GC-08,High,AI Steering Committee approval,Formal approval by the AI Steering Committee before pilot,AI Steering Committee,Internal AI Policy 2.1,Pilot
+GC-09,High,Bias and fairness testing,Test outcomes across protected characteristics with documented results,Data Protection Officer,Equality Act 2010,Production
+GC-10,High,Explainability notice,Residents are told when an automated decision affects them and how to challenge it,General Counsel,UK GDPR Art. 22,Production
+GC-11,High,Continuous monitoring,Drift and performance monitoring with alerting and quarterly review,Platform Team,EU AI Act Art. 72,Production
+GC-12,High,Kill switch,Documented procedure to disable the system within 1 hour,Platform Team,Internal AI Policy 5.4,Production

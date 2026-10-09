@@ -1,0 +1,1 @@
+{"model": "gemini-3.1-flash-lite", "out": {"support": {"probabilities": {"supported": 1.0, "partially_supported": 0.0, "unsupported": 0.0}, "evidence": "The answer lists Gemini Flash, Claude Sonnet, GPT, Clef, and bge-small embeddings as approved for PII and hosted in the UK, which matches the provided documents."}}}

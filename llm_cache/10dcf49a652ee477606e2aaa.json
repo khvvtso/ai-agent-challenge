@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"thought": "The pipeline is fully executed and finalized, so we can now finish the process.", "tool": "finish", "args": {}}}

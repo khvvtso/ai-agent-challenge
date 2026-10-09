@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash-lite", "out": {"thought": "The pipeline is fully executed and the summary was requested to be skipped, so we can now call finish.", "tool": "finish", "args": {}}}
